@@ -1,0 +1,94 @@
+@import './_mixins.scss';
+@import './_vars.scss';
+@import './animations/fade.scss';
+@import './themes/light.scss';
+@import './themes/light-border.scss';
+
+.#{$prefix}--tooltip {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent;
+  background: var(--ui-01);
+  padding: $spacing-xs;
+  opacity: 0;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-property: transform;
+  cursor: pointer;
+  border-radius: 7px;
+  @include layer('pop-out');
+  z-index: 1000;
+  @include typescale('zeta');
+  &[data-popper-placement*='bottom'] {
+    .#{$prefix}--tooltip__arrow {
+      top: 0;
+      left: 0;
+      margin-top: -4px;
+      /*&::before {
+        border-width: 0 1.5em 1em 1.5em;
+        border-color: transparent transparent #232323 transparent;
+      }*/
+    }
+  }
+  &[data-popper-placement*='top'] {
+    .#{$prefix}--tooltip__arrow {
+      bottom: 0;
+      left: 0;
+      margin-bottom: -4px;
+      /*&::before {
+        border-width: 1em 1.5em 0 1.5em;
+        border-color: #232323 transparent transparent transparent;
+      }*/
+    }
+  }
+  &[data-popper-placement*='right'] {
+    .#{$prefix}--tooltip__arrow {
+      left: 0;
+      margin-left: -4px;
+      /*&::before {
+        border-width: 1.5em 1em 1.5em 0;
+        border-color: transparent #232323 transparent transparent;
+      }*/
+    }
+  }
+  &[data-popper-placement*='left'] {
+    .#{$prefix}--tooltip__arrow {
+      right: 0;
+      margin-right: -4px;
+      /*&::before {
+        border-width: 1.5em 0 1.5em 1em;
+        border-color: transparent transparent transparent#232323;
+      }*/
+    }
+  }
+}
+
+.#{$prefix}--tooltip--dark {
+  color: var(--inverse-01);
+  background: var(--ui-06);
+  .#{$prefix}--tooltip__arrow {
+    &:before {
+      background: var(--ui-06);
+    }
+  }
+}
+
+.#{$prefix}--tooltip--visible {
+  opacity: 1;
+}
+
+.#{$prefix}--tooltip__arrow {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  z-index: -1;
+  &:before {
+    content: '';
+    transform: rotate(45deg);
+    background: var(--ui-01);
+    top: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    z-index: -1;
+  }
+}
